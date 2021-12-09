@@ -1,8 +1,6 @@
 book: ## generate documentation
-	rm -rf ./docs/*
-	jupyter-book build --path-output ./docs  ./
-	mv ./docs/_build/html/* ./docs
-	rm -rf ./docs/_build
+	rm -rf ./_build/*
+	jupyter-book build ./
 
 open-book:
-	google-chrome ./docs/index.html
+	google-chrome ./_build/html/index.html
