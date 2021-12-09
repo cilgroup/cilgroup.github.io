@@ -1,6 +1,5 @@
 name: docs
 
-# Only run this when the "main" branch changes
 on:
   push:
     branches: [ main ]
@@ -10,10 +9,14 @@ on:
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
     steps:
     - uses: actions/checkout@v2
 
-    # Install dependencies
     - name: setup conda
       uses: conda-incubator/setup-miniconda@v2
       with:
@@ -22,10 +25,9 @@ jobs:
         environment-file: environment.yaml
         mamba-version: "*"
 
-    # Build the book
     - name: Build the book
       run: |
-        jupyter-book build docs/
+        make book
 
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
