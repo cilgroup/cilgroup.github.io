@@ -1,0 +1,6 @@
+name: cilgroup-page
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - jupyter-book
